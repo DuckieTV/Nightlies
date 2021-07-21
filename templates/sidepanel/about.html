@@ -1,0 +1,76 @@
+<!-- about.html -->
+<div id="aboutpage">
+  <button type="button" class="close" ng-click="closeSidePanel()" uib-tooltip="{{'COMMON/close/btn'|translate}} {{'COMMON/about/hdr'|translate}}" tooltip-placement="left">&times;</button>
+  <h2><span translate-once>COMMON/about/hdr</span><span> v<ng-include src="'VERSION'"></ng-include></span></h2>
+  <table class="table light" style="word-break:break-word">
+    <tr>
+      <td>
+        <h3 translate-once>ABOUT/help/hdr</h3>
+        <p><span translate-once>ABOUT/help/p1</span><a href='https://reddit.com/r/duckietv' target='_blank'>Reddit/r/DuckieTV</a></p>
+        <p><span translate-once>ABOUT/help/p2</span><a href='https://github.com/SchizoDuckie/DuckieTV#changelog' target='_blank' translate-once>ABOUT/help-changelog/link</a></p>
+        <h3 translate-once>ABOUT/bugs/hdr</h3>
+        <p><span translate-once>ABOUT/bugs/p1</span><a href="https://github.com/SchizoDuckie/DuckieTV/issues" target='_blank'>Github</a><span  translate-once>ABOUT/bugs/p2</span></p>
+        <h3 translate-once>ABOUT/tvinfo/hdr</h3>
+        <p><span translate-once>ABOUT/tvinfo/p1</span><a href='https://www.themoviedb.org' target='_blank' translate-once>ABOUT/tvinfo-tmdb/link</a><span translate-once>ABOUT/tvinfo/p2</span><a href='https://www.themoviedb.org/bible' target='_blank' translate-once>ABOUT/tvinfo-tmdbwiki/link</a></p>
+        <h3 translate-once>ABOUT/privacy/hdr</h3>
+        <strong translate-once>ABOUT/privacy/lbl</strong>
+        <ul>
+        <li translate-once>ABOUT/privacy/li1</li>
+        <li translate-once>ABOUT/privacy/li2</li>
+        <li translate-once>ABOUT/privacy/li3</li>
+        <li><span translate-once>ABOUT/privacy/li4-1</span><em translate-once>ABOUT/privacy/li4-2</em><span translate-once>ABOUT/privacy/li4-3</span></li>
+        <li translate-once>ABOUT/privacy/li5</li>
+        </ul>
+        <h3 translate-once>ABOUT/credits/hdr</h3>
+        <p translate-once>ABOUT/credits/p1</p>
+        <ul>
+          <li><a href='https://www.themoviedb.org/' target='_blank'>TMDB</a><span translate-once>ABOUT/credits/li1</span></li>
+          <li><a href='https://Trakt.tv' target='_blank'>Trakt.TV</a><span translate-once>ABOUT/credits/li2</span></li>
+          <li><a href='https://Fanart.tv' target='_blank'>Fanart.TV</a><span translate-once>ABOUT/credits/li6</span></li>
+          <li><a href='https://angularjs.org' target='_blank'>Angular.js</a><span translate-once>ABOUT/credits/li3</span></li>
+          <li><a href='https://Github.com' target='_blank'>Github</a><span translate-once>ABOUT/credits/li4</span></li>
+          <li><a href='https://reddit.com' target='_blank'>Reddit</a><span translate-once>ABOUT/credits/li5</span></li>
+          <li><a href='https://angular-translate.github.io' target='_blank'>Angular-translate.js</a><span translate-once>ABOUT/credits/li7</span></li>
+          <li><a href='http://angular-formly.com' target='_blank'>Angular-formly.js</a><span translate-once>ABOUT/credits/li8</span></li>
+          <li><a href='https://nwjs.io' target='_blank'>NW.js</a><span translate-once>ABOUT/credits/li9</span></li>
+          <li><a href='http://thexem.de' target='_blank'>theXEM.de</a><span translate-once>ABOUT/credits/li10</span></li>
+          <li><a href='https://github.com/ngosang/trackerslist' target='_blank'>ngosang/trackerslist</a><span translate-once>ABOUT/credits/li11</span></li>
+          <li><a href='https://github.com/Jackett/Jackett' target='_blank'>Jackett/Jackett</a><span translate-once>ABOUT/credits/li12</span></li>
+        </ul>
+        <h3 translate-once>ABOUT/dtvlinks/hdr</h3>
+        <ul>
+          <li>
+          <strong translate-once>ABOUT/dtvlinks-github/lbl</strong> <a href='http://duckie.tv' target='_blank'>http://duckie.tv</a>
+          </li>
+        </ul>
+        <h3 translate-once>ABOUT/contributing/hdr</h3>
+        <p><span translate-once>ABOUT/contributing/p1</span><a href='https://github.com/SchizoDuckie/DuckieTV/fork' target='_blank' translate-once>ABOUT/contributing/link</a>!</p>
+        <p><span class="glyphicon glyphicon-heart"></span>&nbsp;<span translate-once>ABOUT/contributing/p2</span><span> AlecRust, CanaanLv, CosmoKramer, dzogas, Gabri3l, galeksandrp, Garfield69, hexjelly, honeybunny from Addic7ed, ismailkarsli, Js41637, kevincaradant, lamaresh, Majester, rahxam, samunders-core, sbodomerle, stormfighter, Tra-Vis, Turingoo, vetr0lam, wck963, zero77, Zythean.</span></p>
+        <table class="table table-condensed table-light" style='background-color: rgba(0,0,0,0.0); color:white; border-top:0px; overflow-x:scroll'>
+          <tr>
+            <td ng-if="!isStandalone" colspan='2' style='border-top:0px'><h3 translate-once>ABOUT/statistics/hdr</h3></td>
+            <td ng-if="isStandalone" colspan='2' style='border-top:0px'><h3><a uib-tooltip="{{ 'ABOUT/statistics/tooltip'|translate}}" tooltip-append-to-body="true" tooltip-placement="right" ng-click="copyStatsToClipboard()" translate-once>ABOUT/statistics/hdr</a></h3></td>
+          </tr>
+          <tr ng-repeat="stats in statistics">
+            <td style='width:160px; white-space:nowrap;'>{{::stats.name}}</td>
+            <td ng-if="stats.data.length && stats.data.length > 200"><pre style="max-width:480px; border:0; padding:0;background-color:transparent;color:white;">{{::stats.data}}</pre></td>
+            <td ng-if="!stats.data.length || stats.data.length <= 200">{{::stats.data}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h1 translate-once>ABOUT/optInTracking/hdr</h1>
+        <p translate-once>ABOUT/optInTracking/desc</p>
+        <p translate-once>ABOUT/optInTracking/desc2</p>
+        <p><strong  translate-once>COMMON/current-setting/hdr</strong>
+        {{ optInTrackingEnabled ? 'COMMON/enabled/lbl' : 'COMMON/disabled/lbl'|translate}}</p>
+        <p ng-if='optInTrackingEnabled'><strong translate-once>ABOUT/optInTracking-id/hdr</strong> {{uniqueTrackingID}}</p>
+
+        <button class='btn' ng-class="{'btn-danger': !optInTrackingEnabled, 'btn-success': optInTrackingEnabled}" ng-click="toggleOptInErrorReporting()">{{ optInTrackingEnabled ? 'COMMON/disable/btn' : 'COMMON/enable/btn'|translate}}
+        <span translate-once>ABOUT/optInTracking/hdr</span></button>
+      </td>
+    </tr>
+  </table>
+</div>

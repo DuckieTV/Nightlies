@@ -1,0 +1,13 @@
+<a class="mark-button mark-watched-button" uib-tooltip="{{getWToolTip(sidepanel.episode)}}">
+  <table>
+    <tr>
+      <td class="left-glyph">
+        <i class="glyphicon glyphicon-eye-{{sidepanel.episode.watched ? 'open' : 'close'}}"></i>
+      </td>
+      <td class="right-text-glyph">
+        <strong><span translate-once>COMMON/mark-as/lbl</span>&nbsp;</strong>
+        <i class="glyphicon glyphicon-eye-{{sidepanel.episode.watched ? 'close' : 'open'}}"></i>
+      </td>
+    </tr>
+  </table>
+</a>

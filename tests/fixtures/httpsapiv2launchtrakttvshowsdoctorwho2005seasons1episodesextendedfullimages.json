@@ -1,0 +1,25 @@
+{
+    "url": "https:\/\/api-v2launch.trakt.tv\/shows\/doctor-who-2005\/seasons\/1\/episodes?extended=full,images",
+    "headers": {
+        "Server": " cloudflare-nginx",
+        "Date": " Sun, 11 Jan 2015 21",
+        "Content-Type": " application\/json; charset=utf-8",
+        "Transfer-Encoding": " chunked",
+        "Connection": " keep-alive",
+        "Set-Cookie": " __cfduid=d16ca3ec0caf4e42f389106e3e49101ac1421012047; expires=Mon, 11-Jan-16 21",
+        "Cache-Control": " public, max-age=86400",
+        "ETag": " W\/\"3cec06bfea542b7af24d601cad21cd06\"",
+        "Expires": " Mon, 12 Jan 2015 21",
+        "Status": " 200 OK",
+        "Vary": " Accept-Encoding",
+        "X-Content-Type-Options": " nosniff",
+        "X-Frame-Options": " SAMEORIGIN",
+        "X-Powered-By": " Phusion Passenger 4.0.57",
+        "X-Request-Id": " 6882faef-1f54-4237-8b1d-f19bf674a8d0",
+        "X-Runtime": " 0.184213",
+        "X-XSS-Protection": " 1; mode=block",
+        "CF-Cache-Status": " HIT",
+        "CF-RAY": " 1a743c8eb0e100e0-AMS"
+    },
+    "content": "[{\"season\":1,\"number\":1,\"title\":\"Rose\",\"ids\":{\"trakt\":951432,\"tvdb\":295294,\"imdb\":\"tt0562992\",\"tmdb\":941474,\"tvrage\":null},\"number_abs\":null,\"overview\":\"Location: London, England\\nDate: 4th\\\/5th\\\/6th March 2005\\nEnemy: Nestene Consciousness\\n\\nRose Tyler stumbles across a man called The Doctor as he seeks out the Nestene Consciousness, to prevent the living plastic it is controlling from taking over the world.\",\"first_aired\":\"2005-03-26T12:30:00.000-08:00\",\"updated_at\":\"2015-01-11T06:00:27.000-08:00\",\"rating\":7.95862,\"votes\":870,\"available_translations\":[],\"images\":{\"screenshot\":{\"full\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/432\\\/screenshots\\\/original\\\/f68ba238bb.jpg?1420722779\",\"medium\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/432\\\/screenshots\\\/medium\\\/f68ba238bb.jpg?1420722779\",\"thumb\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/432\\\/screenshots\\\/thumb\\\/f68ba238bb.jpg?1420722779\"}}}]"
+}

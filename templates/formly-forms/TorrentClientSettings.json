@@ -1,0 +1,96 @@
+[{
+    "key": "server",
+    "type": "input",
+    "templateOptions": {
+        "required": true,
+        "type": "url",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/address/lbl\"|translate"
+    }
+}, {
+    "key": "port",
+    "type": "integer",
+    "templateOptions": {
+        "required": true,
+        "type": "number",
+        "label": "",
+        "max": "65535",
+        "min": "0"
+    },
+    "validation": {
+        "messages": {
+            "min": "\"COMMON/port-range/alert\" | translate",
+            "max": "\"COMMON/port-range/alert\" | translate",
+            "pattern": "\"COMMON/port-range/alert\" | translate",
+            "required": "\"COMMON/port-range/alert\" | translate"
+        }
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/port/lbl\"|translate"
+    }
+}, {
+    "key": "path",
+    "type": "input",
+    "hideExpression": "model.path === undefined || model.hidePath === true",
+    "templateOptions": {
+        "type": "text",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/path/lbl\"|translate"
+    }
+}, {
+    "key": "use_auth",
+    "type": "input",
+    "hideExpression": "model.use_auth === undefined || model.hideUseAuth === true",
+    "templateOptions": {
+        "type": "checkbox",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/authentication/lbl\" | translate"
+    }
+}, {
+    "key": "username",
+    "type": "input",
+    "hideExpression": "model.username === undefined || model.hideUsername === true || model.use_auth === false",
+    "templateOptions": {
+        "type": "text",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/username/lbl\"|translate"
+    }
+}, {
+    "key": "password",
+    "type": "input",
+    "hideExpression": "model.password === undefined || model.hidePassword === true || model.use_auth === false",
+    "templateOptions": {
+        "type": "password",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/password/lbl\"|translate"
+    }
+}, {
+    "key": "token",
+    "type": "input",
+    "hideExpression": "model.token === undefined || model.hideToken === true",
+    "templateOptions": {
+        "type": "text",
+        "label": ""
+    },
+    "expressionProperties": {
+        "templateOptions.label": "\"COMMON/token/lbl\"|translate"
+    }
+}, {
+    "key": "progressX100",
+    "type": "input",
+    "hideExpression": "model.progressX100 === undefined || model.hidePath === true",
+    "templateOptions": {
+        "type": "checkbox",
+        "label": "%x100"
+    }
+}]

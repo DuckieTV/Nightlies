@@ -1,0 +1,84 @@
+<!-- sidepanel/autodlstatus.html -->
+<div id="autodlstatuspage">
+  <button type="button" class="close" ng-click="closeSidePanel()" uib-tooltip="{{'COMMON/close/btn'|translate}} {{'COMMON/auto-download-status/hdr'|translate}}" tooltip-placement="left">&times;</button>
+  <h2>
+    <span translate-once>COMMON/auto-download-status/hdr</span>
+  </h2>
+  <div>
+    <a ui-sref="settings.tab({tab: 'auto-download'})" style="float:left"> <i class="glyphicon glyphicon-cog"></i> <span translate-once>AUTODLSTATUS/auto-download-settings/glyph</span></a>
+    <a ui-sref="settings.tab({tab: 'torrent-search'})" style="float:right"> <i class="glyphicon glyphicon-cog"></i> <span translate-once>COMMON/torrent-search-settings/glyph</span></a>
+  </div>
+  <table class="table table-condensed table-light" colspan='2' style="background-color: rgba(0,0,0,0.0); color:white; border-top:0px; word-break:break-word">
+    <tbody>
+      <tr>
+        <td><strong translate-once>COMMON/status/hdr</strong>: {{status}}</td>
+        <td><strong translate-once>AUTODLSTATUS/last-run/hdr</strong>: {{lastRun | date: 'medium'}}</td>
+      </tr>
+      <tr>
+        <td><strong translate-once>COMMON/min-seeders/hdr</strong>: {{minSeeders}}</td>
+        <td><strong translate-once>AUTODLSTATUS/next-run/hdr</strong>: {{nextRun | date: 'medium'}}</td>
+      </tr>
+      <tr>
+        <td><strong translate-once>AUTODLSTATUS/scan-period/hdr</strong>: {{period}}</td>
+        <td><strong translate-once>AUTODLSTATUS/scan-range/hdr</strong>: {{fromDT | date: 'short'}} - {{toDT | date: 'short'}}</td>
+      </tr>
+      <tr>
+        <td><strong translate-once>COMMON/require-keywords/hdr</strong>: {{requireKeywords}}</td>
+        <td><strong translate-once>COMMON/ignore-keywords/hdr</strong>: {{ignoreKeywords}}</td>
+      </tr>
+      <tr>
+        <td><strong translate-once>COMMON/global-size-min/hdr</strong>: {{globalSizeMin}}{{(globalSizeMin)?' MB':''}}</td>
+        <td><strong translate-once>COMMON/global-size-max/hdr</strong>: {{globalSizeMax}}{{(globalSizeMax)?' MB':''}}</td>
+      </tr>
+    </tbody>
+      <tr>
+        <td><strong translate-once>COMMON/global-quality/hdr</strong>: {{preferredQuality}}</td>
+        <td><strong translate-once>AUTODLSTATUS/search-engine/hdr</strong>: {{searchEngine}}</td>
+      </tr>
+  </table>
+  <hr class="setting-divider">
+  <table ng-show="isActive()" class="table table-condensed table-light" colspan='5' style="background-color: rgba(0,0,0,0.0); color:white; border-top:0px; word-break:break-word">
+    <thead>
+      <tr>
+        <th ng-show="sortBy.length==1" style="width:410px" align="center"><span translate-once>AUTODLSTATUS/search-criteria/hdr</span>{{lastRun | date: 'medium'}}</th>
+        <th ng-show="sortBy.length==2" style="width:410px" align="center"><u ng-click="sortBy=['search'];" uib-tooltip="{{'COMMON/sort-column/tooltip'|translate}}" tooltip-append-to-body="true"><strong translate-once>AUTODLSTATUS/search-criteria/hdr</strong>{{lastRun | date: 'medium'}}</u></th>
+        <th style="width:45px" align="center" uib-tooltip="{{'COMMON/custom-search-size-min-max/lbl'|translate}}" tooltip-append-to-body="true">CSM</th>
+        <th style="width:40px" align="center" uib-tooltip="{{'COMMON/custom-search-string/lbl'|translate}}" tooltip-append-to-body="true">CSS</th>
+        <th style="width:40px" align="center" uib-tooltip="{{'COMMON/ignore-global-quality/lbl'|translate}}" tooltip-append-to-body="true">IPQ</th>
+        <th style="width:40px" align="center" uib-tooltip="{{'COMMON/ignore-require-keywords/lbl'|translate}}" tooltip-append-to-body="true">IRK</th>
+        <th style="width:40px" align="center" uib-tooltip="{{'COMMON/ignore-ignore-keywords/lbl'|translate}}" tooltip-append-to-body="true">IIK</th>
+        <th ng-show="sortBy.length==2" translate-once>COMMON/status/hdr</th>
+        <th ng-show="sortBy.length==1"><u ng-click="sortBy=['-status', 'search'];" uib-tooltip="{{'COMMON/sort-column/tooltip'|translate}}" tooltip-append-to-body="true"><strong translate-once>COMMON/status/hdr</strong></u></th>
+      </tr>
+    </thead>
+    <tbody ng-show="activityList.length == 0">
+      <tr>
+        <td><h3 ng-show="activityList.length == 0">{{getTorrentClientNameAndStatus()}}</h3></td>
+      </tr>
+    </tbody>
+    <tbody ng-show="activityList.length != 0">
+      <tr ng-repeat="item in activityList | orderBy: sortBy">
+        <td width="400px">
+          <i class="glyphicon glyphicon-info-sign" uib-tooltip="{{'COMMON/episode-details/tooltip'|translate}}" tooltip-append-to-body="true" ui-sref="episode({episode_id: item.episode.ID_Episode})"></i>
+          {{item.search}}{{item.searchProvider}}{{item.csmExtra}}
+          <torrent-dialog episode="item.episode" serie="item.serie" ng-show="item.status > 3"></torrent-dialog>
+        </td>
+        <td style="width:40px" align="center"><div class="glyphicon" ng-class="{ 'glyphicon-ok' : item.csm == 1, 'glyphicon-remove' : item.csm == 0 }" uib-tooltip="{{getTooltip('csm', item)}}"></div></td>
+        <td style="width:40px" align="center"><div class="glyphicon" ng-class="{ 'glyphicon-ok' : item.css == 1, 'glyphicon-remove' : item.css == 0 }" uib-tooltip="{{getTooltip('css', item)}}"></div></td>
+        <td style="width:40px" align="center"><div class="glyphicon" ng-class="{ 'glyphicon-ok' : item.ipq == 1, 'glyphicon-remove' : item.ipq == 0 }" uib-tooltip="{{getTooltip('ipq', item)}}"></></div></td>
+        <td style="width:40px" align="center"><div class="glyphicon" ng-class="{ 'glyphicon-ok' : item.irk == 1, 'glyphicon-remove' : item.irk == 0 }" uib-tooltip="{{getTooltip('irk', item)}}"></></div></td>
+        <td style="width:40px" align="center"><div class="glyphicon" ng-class="{ 'glyphicon-ok' : item.iik == 1, 'glyphicon-remove' : item.iik == 0 }" uib-tooltip="{{getTooltip('iik', item)}}"></></div></td>
+        <td>{{getStatusCode(item.status, item.extra)}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-show="!isActive()" class="table table-condensed table-light" style="background-color: rgba(0,0,0,0.0); color:white; border-top:0px; word-break:break-word">
+    <thead>
+      <tr>
+        <td><h3>{{getTorrentClientNameAndStatus()}}</h3></td>
+      </tr>
+    </thead>
+  </table>
+  <hr class="setting-divider" ng-show="activityList.length != 0 || !isActive()">
+  <a href="https://github.com/SchizoDuckie/DuckieTV/wiki/Auto-Download-FAQs" target="_blank"> <i class="glyphicon glyphicon-info-sign"></i> <span translate-once>AUTODLSTATUS/wiki/lbl</span></a>
+</div>

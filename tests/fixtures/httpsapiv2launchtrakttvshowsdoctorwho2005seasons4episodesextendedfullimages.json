@@ -1,0 +1,25 @@
+{
+    "url": "https:\/\/api-v2launch.trakt.tv\/shows\/doctor-who-2005\/seasons\/4\/episodes?extended=full,images",
+    "headers": {
+        "Server": " cloudflare-nginx",
+        "Date": " Sun, 11 Jan 2015 21",
+        "Content-Type": " application\/json; charset=utf-8",
+        "Transfer-Encoding": " chunked",
+        "Connection": " keep-alive",
+        "Set-Cookie": " __cfduid=d16ca3ec0caf4e42f389106e3e49101ac1421012047; expires=Mon, 11-Jan-16 21",
+        "Cache-Control": " public, max-age=86400",
+        "ETag": " W\/\"423d8837c5e0f1b9658af32773a58c56\"",
+        "Expires": " Mon, 12 Jan 2015 21",
+        "Status": " 200 OK",
+        "Vary": " Accept-Encoding",
+        "X-Content-Type-Options": " nosniff",
+        "X-Frame-Options": " SAMEORIGIN",
+        "X-Powered-By": " Phusion Passenger 4.0.57",
+        "X-Request-Id": " bcd1334f-3939-4758-bea0-df26923c265d",
+        "X-Runtime": " 0.153230",
+        "X-XSS-Protection": " 1; mode=block",
+        "CF-Cache-Status": " HIT",
+        "CF-RAY": " 1a743c8ef21a00e0-AMS"
+    },
+    "content": "[{\"season\":4,\"number\":1,\"title\":\"Partners in Crime\",\"ids\":{\"trakt\":951471,\"tvdb\":357056,\"imdb\":\"\",\"tmdb\":941505,\"tvrage\":null},\"number_abs\":null,\"overview\":\"Location: London\\nDate: 2009\\nEnemies: Adipose, Miss Foster\\n\\nDuring an alien emergency in London, a woman called Donna Noble must search for an old friend who can save the day - a man named the Doctor. But can even the Doctor halt the plans of the mysterious Miss Foster?\",\"first_aired\":\"2008-04-05T12:30:00.000-07:00\",\"updated_at\":\"2015-01-10T12:50:11.000-08:00\",\"rating\":8.49897,\"votes\":485,\"available_translations\":[],\"images\":{\"screenshot\":{\"full\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/471\\\/screenshots\\\/original\\\/0628131af6.jpg?1420722800\",\"medium\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/471\\\/screenshots\\\/medium\\\/0628131af6.jpg?1420722800\",\"thumb\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/471\\\/screenshots\\\/thumb\\\/0628131af6.jpg?1420722800\"}}}]"
+}

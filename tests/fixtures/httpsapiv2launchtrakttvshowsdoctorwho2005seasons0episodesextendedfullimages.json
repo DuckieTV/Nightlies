@@ -1,0 +1,25 @@
+{
+    "url": "https:\/\/api-v2launch.trakt.tv\/shows\/doctor-who-2005\/seasons\/0\/episodes?extended=full,images",
+    "headers": {
+        "Server": " cloudflare-nginx",
+        "Date": " Sun, 11 Jan 2015 21",
+        "Content-Type": " application\/json; charset=utf-8",
+        "Transfer-Encoding": " chunked",
+        "Connection": " keep-alive",
+        "Set-Cookie": " __cfduid=d16ca3ec0caf4e42f389106e3e49101ac1421012047; expires=Mon, 11-Jan-16 21",
+        "Cache-Control": " public, max-age=86400",
+        "ETag": " W\/\"8ea2b9b53f0102287f7901e37eb69748\"",
+        "Expires": " Mon, 12 Jan 2015 21",
+        "Status": " 200 OK",
+        "Vary": " Accept-Encoding",
+        "X-Content-Type-Options": " nosniff",
+        "X-Frame-Options": " SAMEORIGIN",
+        "X-Powered-By": " Phusion Passenger 4.0.57",
+        "X-Request-Id": " 5bf89517-dde7-4836-bd79-d49962b8136d",
+        "X-Runtime": " 1.405111",
+        "X-XSS-Protection": " 1; mode=block",
+        "CF-Cache-Status": " HIT",
+        "CF-RAY": " 1a743c8ea4a100e0-AMS"
+    },
+    "content": "[{\"season\":0,\"number\":1,\"title\":\"Children in Need: Born Again\",\"ids\":{\"trakt\":951295,\"tvdb\":306975,\"imdb\":\"\",\"tmdb\":1008917,\"tvrage\":null},\"number_abs\":null,\"overview\":\"The newly-regenerated Doctor explains to a disbelieving Rose that he has regenerated. \",\"first_aired\":\"2005-11-18T12:30:00.000-08:00\",\"updated_at\":\"2015-01-11T04:40:08.000-08:00\",\"rating\":8.41546,\"votes\":207,\"available_translations\":[],\"images\":{\"screenshot\":{\"full\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/295\\\/screenshots\\\/original\\\/debbf1a83e.jpg?1420722426\",\"medium\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/295\\\/screenshots\\\/medium\\\/debbf1a83e.jpg?1420722426\",\"thumb\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/295\\\/screenshots\\\/thumb\\\/debbf1a83e.jpg?1420722426\"}}}]"
+}

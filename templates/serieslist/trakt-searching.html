@@ -1,0 +1,31 @@
+<!-- serieslist\trakt-searching.html -->
+<div class="series adding" series-grid="{{serieslist.sgEnabled}}" no-scroll ng-class="{'miniposter': serieslist.isSmall}">
+  <h1 ng-show="traktSearch.error"><img src="img/logo/icon64-inverted.png" style='-webkit-transform:rotate(-220deg); display:block; margin:0 auto;' /><span translate-once>SERIESLIST/TRAKT-SEARCHING/error-with-trakttv/lbl</span><br>{{traktSearch.error.statusText}}</h1>
+
+  <div ng-show="traktSearch.searching">
+    <img src="img/trakt.png" class="spin">
+    <h3 translate-once>SERIESLIST/TRAKT-SEARCHING/please-wait/lbl</h3>
+  </div>
+
+  <!-- If no results -->
+  <div ng-show="!traktSearch.searching && traktSearch.results.length == 0">
+    <img src="img/trakt.png">
+    <h3><span translate-once>SERIESLIST/TRAKT-SEARCHING/no-results/lbl</span> {{traktSearch.search.query}}</h3>
+  </div>
+
+  <div class="series-grid" style="position:relative;margin-top:22px">
+    <!-- Repeated serie search results -->
+    <serieHeader ui-sref-active="active" ng-if="traktSearch.results.length > 0" ng-repeat="serie in traktSearch.results track by serie.trakt_id" data="serie" no-badge="1" no-overview="1" no-button="1" style="{{grid.getPosition($index, filteredTrending.length)}}" ui-sref="add_favorites.search.trakt-serie({ serie: serie})">
+      <em class="earmark add" ng-if="!serieslist.isAdded(serie.trakt_id) && !serieslist.isAdding(serie.trakt_id)" ng-click="serieslist.selectSerie(serie)">
+        <i class="glyphicon glyphicon-plus"></i>
+      </em>
+      <em class="earmark trailer">
+        <a ng-show="serie.trailer" href="{{serie.trailer}}" target="_blank" uib-tooltip="{{'COMMON/watch-trailer/tooltip'|translate}}" tooltip-append-to-body="true" tooltip-placement="bottom" ng-mousedown="serieslist.selectTrailer(serie,true)" ng-mouseup="serieslist.selectTrailer(serie,false)"><i class="glyphicon glyphicon-facetime-video"></i></a>
+        <a ng-show="!serie.trailer" href="https://www.youtube.com/results?search_query={{serie.name}}+official+trailer" target="_blank" uib-tooltip="{{'COMMON/watch-trailer/tooltip'|translate}}" tooltip-append-to-body="true" tooltip-placement="bottom"  mousedown="serieslist.selectTrailer(serie,false)" ng-mouseup="serieslist.selectTrailer(serie,true)"><i class="glyphicon glyphicon-facetime-video"></i></a>
+      </em>
+      <em class="earmark" ng-show="serieslist.isAdded(serie.trakt_id)"><i class='glyphicon glyphicon-ok'></i></em>
+      <em class="earmark adding" ng-show="serieslist.isAdding(serie.trakt_id)"><loading-spinner style="width: 37px; height:37px;"></loading-spinner></em>
+      <em class="earmark error" ng-show="serieslist.isError(serie.trakt_id)" uib-tooltip="{{error[serie.trakt_id]}}" tooltip-append-to-body="true"> :( </em>
+    </serieHeader>
+  </div>
+</div>

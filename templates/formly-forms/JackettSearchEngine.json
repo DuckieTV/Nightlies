@@ -1,0 +1,48 @@
+[{
+    "key": "name",
+    "type": "input",
+    "templateOptions": {
+        "type": "text",
+        "label": ""
+        },
+        "expressionProperties": {
+            "templateOptions.label": "\"JACKETTSEDIALOGCTRLjs/name/lbl\" | translate",
+            "templateOptions.placeholder": "\"JACKETTSEDIALOGCTRLjs/name/placeholder\" | translate",
+            "templateOptions.disabled": "!model.isNew",
+            "templateOptions.required": "model.isNew"
+        }
+}, {
+    "key": "apiKey",
+    "type": "input",
+    "templateOptions": {
+        "required": true,
+        "type": "text",
+        "label": ""
+        },
+        "expressionProperties": {
+            "templateOptions.label": "\"JACKETTSEDIALOGCTRLjs/apikey/lbl\" | translate",
+            "templateOptions.placeholder": "\"JACKETTSEDIALOGCTRLjs/apikey/placeholder\" | translate"
+        }
+}, {
+    "key": "torznab",
+    "type": "input",
+    "templateOptions": {
+        "required": true,
+        "type": "text",
+        "label": ""
+        },
+        "expressionProperties": {
+            "templateOptions.label": "\"JACKETTSEDIALOGCTRLjs/torznab/lbl\" | translate",
+            "templateOptions.placeholder": "\"JACKETTSEDIALOGCTRLjs/torznab/placeholder\" | translate"
+        }
+}, {
+    "key": "torznabEnabled",
+    "type": "input",
+    "templateOptions": {
+        "type": "checkbox",
+        "label": ""
+        },
+        "expressionProperties": {
+            "templateOptions.label": "\"JACKETTSEDIALOGCTRLjs/torznab-enabled/lbl\" | translate"
+        }
+}]

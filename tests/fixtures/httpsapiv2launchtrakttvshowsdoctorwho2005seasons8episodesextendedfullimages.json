@@ -1,0 +1,25 @@
+{
+    "url": "https:\/\/api-v2launch.trakt.tv\/shows\/doctor-who-2005\/seasons\/8\/episodes?extended=full,images",
+    "headers": {
+        "Server": " cloudflare-nginx",
+        "Date": " Sun, 11 Jan 2015 21",
+        "Content-Type": " application\/json; charset=utf-8",
+        "Transfer-Encoding": " chunked",
+        "Connection": " keep-alive",
+        "Set-Cookie": " __cfduid=d16ca3ec0caf4e42f389106e3e49101ac1421012047; expires=Mon, 11-Jan-16 21",
+        "Cache-Control": " public, max-age=86400",
+        "ETag": " W\/\"6bfabadd088d52cf157b21abe753fe20\"",
+        "Expires": " Mon, 12 Jan 2015 21",
+        "Status": " 200 OK",
+        "Vary": " Accept-Encoding",
+        "X-Content-Type-Options": " nosniff",
+        "X-Frame-Options": " SAMEORIGIN",
+        "X-Powered-By": " Phusion Passenger 4.0.57",
+        "X-Request-Id": " 2c7a22e9-3629-4862-bfbe-ac75b0edbd83",
+        "X-Runtime": " 0.176253",
+        "X-XSS-Protection": " 1; mode=block",
+        "CF-Cache-Status": " HIT",
+        "CF-RAY": " 1a743c90c79c00e0-AMS"
+    },
+    "content": "[{\"season\":8,\"number\":1,\"title\":\"Deep Breath\",\"ids\":{\"trakt\":951523,\"tvdb\":4918623,\"imdb\":\"tt3469416\",\"tmdb\":988112,\"tvrage\":1065569374},\"number_abs\":null,\"overview\":\"When a dinosaur materialises alongside the Houses of Parliament in Victorian London, the Doctor's old friends, the Paternoster Gang, are relieved when he arrives, seemingly to deal with the creature. However, they soon realise that the Doctor is the one in need of help; newly regenerated, extremely volatile and questioning his self-worth, this is a very different man to the one they last saw. The only person that may be able to help him is Clara, and she is still grappling with losing the Doctor she knew and loved.\",\"first_aired\":\"2014-08-23T12:30:00.000-07:00\",\"updated_at\":\"2015-01-11T12:57:15.000-08:00\",\"rating\":8.14964,\"votes\":1263,\"available_translations\":[],\"images\":{\"screenshot\":{\"full\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/523\\\/screenshots\\\/original\\\/b14177a321.jpg?1420722842\",\"medium\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/523\\\/screenshots\\\/medium\\\/b14177a321.jpg?1420722842\",\"thumb\":\"https:\\\/\\\/walter.trakt.us\\\/images\\\/episodes\\\/000\\\/951\\\/523\\\/screenshots\\\/thumb\\\/b14177a321.jpg?1420722842\"}}}]"
+}
