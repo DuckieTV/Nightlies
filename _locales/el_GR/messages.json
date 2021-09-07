@@ -1,0 +1,20 @@
+{
+  "appNameNewTab": {
+    "message": "DuckieTV - Λειτουργία 'Νέα καρτέλα'"
+  },
+  "appShortNameNewTab": {
+    "message": "DuckieTV"
+  },
+  "appDescNewTab": {
+    "message": "Διαχειριστείτε τις αγαπημένες σας τηλεοπτικές σειρές και ταινίες από τη νέα καρτέλα του προγράμματος περιήγησης που χρησιμοποιείτε"
+  },
+  "appNameBrowserAction": {
+    "message": "DuckieTV - Λειτουργία 'Δράση Προγράμματος Περιήγησης'"
+  },
+  "appShortNameBrowserAction": {
+    "message": "DuckieTV"
+  },
+  "appDescBrowserAction": {
+    "message": "Διαχειριστείτε τις αγαπημένες σας τηλεοπτικές σειρές και ταινίες από το πρόγραμμα περιήγησης που χρησιμοποιείτε με το πάτημα ενός κουμπιού"
+  }
+}

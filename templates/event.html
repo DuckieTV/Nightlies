@@ -1,0 +1,31 @@
+<!-- event.html -->
+<div class="event" ui-sref="episode({episode_id: episode.ID_Episode})" ng-mouseenter="startHoverTimer()" ng-mouseleave="clearHoverTimer()">
+  <a ng-class="{watched : episode.watched, badged: count > 2}">
+    <!-- if we have a torrent, show the progress -->
+    <div ng-if="getSetting('torrenting.enabled') && getSetting('torrenting.progress') && episode.magnetHash">
+      <torrent-remote-control info-hash="episode.magnetHash" downloaded="episode.isDownloaded()" template-url="templates/torrentMiniRemoteProgress.html" uib-tooltip-template="'eventTooltipTemplate.html'" tooltip-append-to-body="true" tooltip-placement="left" tooltip-class="calendar" tooltip-popup-delay="50">
+        <event-name></event-name>
+      </torrent-remote-control>
+    </div>
+    <!-- no torrent, or don't show torrent: just show the name --> 
+    <div ng-if="!getSetting('torrenting.enabled') || !episode.magnetHash || !getSetting('torrenting.progress')" class="watchedwidth">
+      <span style="display:block" uib-tooltip="{{::episode.getFormattedEpisode()}} ({{::episode.getAirTime() }}) " tooltip-append-to-body="true" tooltip-placement="left" tooltip-class="calendar" tooltip-popup-delay="50">
+        <event-name></event-name>
+      </span>
+    </div>
+    <!-- episode downloaded via .torrent, show 100% progress bar. -->
+    <div ng-if="getSetting('calendar.show-downloaded') && episode.downloaded" class="torrent-mini-remote-control-progress progress-striped progress" >
+      <span class="progress-bar progress-bar-success" style="width:100%"></span>
+    </div>
+    <!-- episode watched, show icon. -->
+    <span ng-show="episode.isWatched()" class="glyphicon glyphicon-ok watchedpos"></span>
+    <span ng-show="!episode.isWatched() && (episode.hasAired() || episode.isLeaked())" class="glyphicon glyphicon-unchecked markpos" uib-tooltip="{{ 'COMMON/not-marked/lbl'|translate }}" tooltip-append-to-body="true" tooltip-placement="left" ng-click="episode.markWatched(getSetting('episode.watched-downloaded.pairing'), $root); $event.stopPropagation();"></span>
+    <span ng-show="count > 2" class="badge" ng-click="expand()">x{{count}}</span>
+  </a>
+</div>
+
+<script type="text/ng-template" id="eventTooltipTemplate.html">
+  <div>
+  <b>{{episode.getFormattedEpisode()}}</b><br/>({{episode.getAirTime()}}) 
+  </div>
+</script>

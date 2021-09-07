@@ -1,0 +1,14 @@
+<div class="series" series-grid="{{serieslist.sgEnabled}}" ng-class="{'miniposter': serieslist.isSmall}">
+  <h1 style="margin-top:{{serieslist.isFiltering ? '60' : '10'}}px;color:rgb(225,225,225);transition: margin .5s ease-in-out;margin-bottom:15px" translate-once>SERIESLIST/FAVORITES/click-to-see/lbl</h1>
+  <div class="series-grid" style="position:relative">
+    <serieHeader
+      data="serie"
+      no-badge="0"
+      no-title="1"
+      no-overview="1"
+      context-menu="serieslist.contextMenu(serie)"
+      style="{{grid.getPosition($index, filteredFavorites.length)}}"
+      ng-repeat="serie in filteredFavorites = (serieslist.getFavorites() | orderBy: serieslist.orderBy : serieslist.reverse| filter: serieslist.localFilter)">
+    </serieHeader>
+  </div>
+</div>

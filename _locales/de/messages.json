@@ -1,0 +1,20 @@
+{
+    "appNameNewTab": {
+        "message": "DuckieTV - 'Neuer-Tab'-Modus"
+    },
+    "appShortNameNewTab": {
+        "message": "DuckieTV"
+    },
+    "appDescNewTab": {
+        "message": "Verwalten Sie Ihre Lieblingsserien und -filme aus einem Browser-Tab"
+    },
+    "appNameBrowserAction": {
+        "message": "DuckieTV - 'Browser-Knopf'-Modus"
+    },
+    "appShortNameBrowserAction": {
+        "message": "DuckieTV"
+    },
+    "appDescBrowserAction": {
+        "message": "Verwalten Sie Ihre Lieblingsserien und -filme in Ihrem Browser mit einem Klick"
+    }
+}

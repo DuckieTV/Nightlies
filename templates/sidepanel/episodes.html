@@ -1,0 +1,117 @@
+<!-- episodes.html -->
+<div class="episodes">
+  <button type="button" class="close" ng-click="season.closeSidePanelExpansion()" uib-tooltip="{{'COMMON/close/btn'|translate}} {{'COMMON/episodes/lbl'|translate}}" tooltip-placement="left">&times;</button>
+  <div class="season-control">
+    <div class="season-control-left">
+      <a ng-click="season.gotoFirstSeason()" ng-show="season.seasons.length > 2" ng-class="{disabled: season.seasonIndex == season.seasons.length-1}" uib-tooltip="{{'SIDEPANEL/EPISODES/first-season/tooltip'|translate}}" tooltip-placement="right"><i class="glyphicon glyphicon-step-backward"></i></a>
+      <a ng-click="season.gotoPreviousSeason()" ng-class="{disabled: season.seasonIndex == season.seasons.length-1}" uib-tooltip="{{'SIDEPANEL/EPISODES/previous-season/tooltip'|translate}}" tooltip-placement="right"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </div>
+    <h2>{{::season.getPageHeader(season.season)}}</h2>
+    <div class="season-control-right">
+      <a ng-click="season.gotoLastSeason()" ng-show="season.seasons.length > 2" ng-class="{disabled: season.seasonIndex === 0}" uib-tooltip="{{'SIDEPANEL/EPISODES/last-season/tooltip'|translate}}" tooltip-placement="left"><i class="glyphicon glyphicon-step-forward"></i></a>
+      <a ng-click="season.gotoNextSeason()" ng-class="{disabled: season.seasonIndex === 0}" uib-tooltip="{{'SIDEPANEL/EPISODES/next-season/tooltip'|translate}}" tooltip-placement="left"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div> 
+  </div>
+  <p class="overview" style="text-align:justify">{{::season.season.overview}}</p>
+  <strong><span translate-once>COMMON/episodes/lbl</span>
+  </strong>
+  <table class="table table-condensed light episodelist" style='margin:10px 0 10px 0; background-color:transparent' ng-class="{'hover':getSetting('torrenting.enabled')}">
+    <tbody ng-if="!season.episodes || season.episodes.length == 0">
+      <tr>
+        <td translate-once>SIDEPANEL/EPISODES/fetching-episodes/lbl</td>
+      </tr>
+    </tbody>
+    <tbody ng-if="season.episodes" ng-repeat="episode in season.episodes | orderBy: season.getSortEpisodeNumber:true">
+      <tr class="episodecontainer">
+        <td style="width:70px">
+          <a ui-sref="serie.season.episode({episode_id: episode.ID_Episode})">{{::episode.getFormattedEpisode()}}</a>
+        </td>
+        <td>
+          <a tooltip-placement="bottom" tooltip-popup-delay="500" uib-tooltip-template="'episodeDetailsTooltip.html'" ui-sref="serie.season.episode({episode_id: episode.ID_Episode})">{{::episode.episodename}}</a>
+        </td>
+        <td class="nobreaks" align="right" style="width:66px">
+          <a ui-sref="serie.season.episode({episode_id: episode.ID_Episode})" uib-tooltip="{{episode.getAirDate() | date: 'short'}}" ng-class="{'airdate': episode.hasAired()||episode.isLeaked()}" >{{episode.firstaired == 0 ? '?' : episode.firstaired|date:'shortDate'}}</a>
+
+          <div ng-show="(episode.hasAired() || episode.isLeaked()) && getSetting('torrenting.enabled')" class="torrentctrls">
+            <torrent-dialog episode="episode" serie="sidepanel.serie"></torrent-dialog>
+            <a class="auto-download-episode" ng-click="season.autoDownload(sidepanel.serie, episode)" uib-tooltip="{{'COMMON/auto-download/lbl'|translate}}">
+              <i class="glyphicon glyphicon-cloud-download"></i>
+            </a>
+          </div>
+
+        </td>
+        <td style="width:58px;position:relative">
+          <episode-downloaded ng-show="episode.hasAired() || episode.isLeaked()"></episode-downloaded> <episode-watched ng-show="episode.hasAired() || episode.isLeaked()"></episode-watched>
+        </td>
+      </tr>
+      <tr ng-if="getSetting('torrenting.enabled') && getSetting('torrenting.progress') && episode.magnetHash">
+        <td colspan="4" style="border: none; padding:0;">
+          <torrent-remote-control info-hash="episode.magnetHash" downloaded="episode.isDownloaded()" template-url="templates/torrentMiniRemoteProgress.html" style="position:relative"></torrent-remote-control>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div ng-if="getSetting('download.ratings')">
+    <h2 style='border-bottom:1px solid white;padding:5px;margin-top:10px' translate-once>SIDEPANEL/EPISODES/episode-ratings/hdr</h2>
+    <div class="chart">
+      <div class="chartLine" ng-repeat="p in season.points track by $index" ng-style="{ height: p.y + '%', left: ((100 / season.points.length) * $index) + '%',  width: (100 / season.points.length)+'%' }" ng-attr-uib-tooltip="{{p.label}}" tooltip-append-to-body="true" tooltip-popup-delay="75"></div>
+    </div>
+  </div>
+  <table class="buttons" style="margin-top:10px;width:100%">
+    <tr class="two-face-torrent">
+      <td colspan="2">
+        <table style="width:100%;margin: 5px 0px 5px 0px" ng-show="getSetting('torrenting.enabled')">
+          <tr>
+            <td style="width:100%;padding-left:20px">
+              <a class="download" ng-click="season.autoDownloadAll()">
+                <i class="glyphicon glyphicon-cloud-download"></i><strong translate-once>SIDEPANEL/EPISODES/auto-download-all/lbl</strong>
+                <span class="sr-only" translate-once>COMMON/split-button/sr</span>
+              </a>
+            </td>
+            <td style="padding-right:20px">
+              <torrent-dialog class="auto-download" q='season.getSeasonSearchString(sidepanel.serie,season.season)'>
+                <strong style="display:flex">&nbsp;</strong>
+              </torrent-dialog>
+              <span class="sr-only" translate-once>COMMON/split-button/sr</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr class="two-face">
+      <td>
+        <a ng-click="season.markAllDownloaded(season.episodes)">
+          <table>
+            <tr>
+              <td style="width:22px">
+                <i class="glyphicon glyphicon-floppy-saved" style="top:0"></i>
+              </td>
+              <td style="width:auto">
+                <strong translate-once>COMMON/mark-all-downloaded/lbl</strong>
+              </td>
+            </tr>
+          </table>
+        </a>
+      </td>
+      <td>
+        <a ng-click="season.markAllWatched(season.episodes)">
+          <table>
+            <tr>
+              <td style="width:22px">
+                <i class="glyphicon glyphicon-eye-open" style="top:0"></i>
+              </td>
+              <td style="width:auto">
+                <strong translate-once>COMMON/mark-all-watched/lbl</strong>
+              </td>
+            </tr>
+          </table>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/ng-template" id="episodeDetailsTooltip.html">
+  <strong>{{sidepanel.serie.name}} {{season.getEpisodeNumber(episode)}}</strong><br>
+  <strong>{{episode.episodename}}</strong>
+  <p style="text-align:justify">{{episode.overview}}</p>
+</script>

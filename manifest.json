@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    "name": "__MSG_appNameNewTab__",
+    "short_name": "__MSG_appShortNameNewTab__",
+    "description": "__MSG_appDescNewTab__",
+    "default_locale": "en",
+    "version": "1.1.6",
+    "offline_enabled": true,
+    "permissions": [
+        "http://*/*",
+        "https://*/*",
+        "topSites",
+        "notifications",
+        "unlimitedStorage"
+    ],
+    "optional_permissions": [
+        "storage", "cookies", "http://*/", "https://*/"
+    ],
+    "icons": {
+        "16": "img/logo/icon16.png",
+        "32": "img/logo/icon32.png",
+        "48": "img/logo/icon48.png",
+        "128": "img/logo/icon128.png",
+        "256": "img/logo/icon256.png"
+    },
+    "background": {
+        "scripts": [
+            "js/vendor/CRUD.js",
+            "js/vendor/CRUD.SqliteAdapter.js",
+            "js/CRUD.entities.js",
+            "js/CRUD.background.bootstrap.js",
+            "js/background.js"
+        ],
+        "persistent": false
+    },
+    "content_security_policy": "script-src 'self' https://api.loggr.net https://post.loggr.net 'unsafe-eval' http://localhost:10000 http://localhost:10015 http://localhost:10078 http://localhost:10231 http://localhost:10516 http://localhost:10975 http://localhost:11650 http://localhost:12583 http://localhost:13816 http://localhost:15391 http://localhost:17350 http://localhost:19735 http://localhost:22588 http://localhost:25951 http://localhost:29866 http://localhost:34375 http://localhost:39520 http://localhost:45343 http://localhost:51886 http://localhost:59191; object-src 'self';",
+    "chrome_url_overrides": {
+        "newtab": "tab.html"
+    },
+    "homepage_url": "http://duckie.tv/"
+}

@@ -1,0 +1,25 @@
+<div class="buttons" ng-controller="tTorrentCtrl as ttorrent">
+	<h2>tTorrent  <h2cont translate-once>COMMON/integration/hdr</h2cont></h2>
+
+	<img src="img/torrentclients/ttorrent-colored.png" style='width:200px; margin: 0 auto'>
+
+  <p><a href='https://github.com/SchizoDuckie/DuckieTV/wiki/Setting-up-tTorrent-with-DuckieTV' target='_blank' translate-once>COMMON/set-up-instructions/lbl</a></p>
+
+	<p ng-show="ttorrent.isConnected()"><span translate-once>COMMON/status/hdr</span>:
+    <span translate-once>COMMON/connected/lbl</span> tTorrent  API &#64; {{ttorrent.model.server}}:{{ttorrent.model.port}}
+	</p>
+
+	<p ng-show="!ttorrent.isConnected()"><span translate-once>COMMON/status/hdr</span>:
+    <span translate-once>COMMON/not-connected/lbl</span>
+	</p>
+
+	<p ng-show="ttorrent.error"><span translate-once>COMMON/error/hdr</span>:
+    <span >{{ttorrent.error}}</span>
+	</p>
+
+  <form ng-submit="ttorrent.test()" novalidate>
+    <formly-form model="ttorrent.model" fields="ttorrent.fields">
+      <button type="submit" class="btn btn-primary submit-button" translate-once>COMMON/test-save/btn</button>
+    </formly-form>
+  </form>
+</div>
