@@ -1,5 +1,5 @@
 /**
- * Automatic mirror resolver for ThePirateBay by utilizing proxy-bay.co
+ * Automatic mirror resolver for ThePirateBay by utilizing proxy-bay.app
  */
 DuckieTV.factory('ThePirateBayMirrorResolver', ['$q', '$http', '$injector',
   function($q, $http, $injector) {
@@ -8,7 +8,7 @@ DuckieTV.factory('ThePirateBayMirrorResolver', ['$q', '$http', '$injector',
     var maxAttempts = 3
 
     var endpoints = {
-      thepiratebay: 'https://proxy-bay.com/'
+      thepiratebay: 'https://proxy-bay.app/'
     }
 
     /**
@@ -33,7 +33,7 @@ DuckieTV.factory('ThePirateBayMirrorResolver', ['$q', '$http', '$injector',
      * expected layout. (Some proxies proxy your magnet links so they can track them, we don't want that.)
      */
     function parseTPBTestSearch(result, allowUnsafe) {
-      return result.data.indexOf('magnet:') > -1
+      return allowUnsafe ? true : result.data.indexOf('magnet:') > -1
     }
 
     var service = {
