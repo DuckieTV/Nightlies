@@ -85,16 +85,63 @@
         "templateOptions.placeholder": "\"SERIESETTINGSCTRLjs/custom-search/placeholder\" | translate"
     }
 }, {
-    "key": "ignoreGlobalQuality",
-    "className": "inline-checkbox-small col-xs-6",
-    "type": "input",
-    "templateOptions": {
-        "type": "checkbox",
-        "label": ""
-    },
-    "expressionProperties": {
-        "templateOptions.label": "\"COMMON/ignore-global-quality/lbl\" | translate"
-    }
+    "className": "row",
+    "fieldGroup": [{
+      "key": "customIncludes",
+      "className": "col-xs-6",
+      "type": "input",
+      "templateOptions": {
+          "type": "text",
+          "label": ""
+      },
+      "expressionProperties": {
+          "templateOptions.label": "\"COMMON/custom-includes/lbl\" | translate",
+          "templateOptions.placeholder": "\"SERIESETTINGSCTRLjs/custom-includes/placeholder\" | translate"
+      }
+    }, {
+      "key": "customExcludes",
+      "className": "col-xs-6",
+      "type": "input",
+      "templateOptions": {
+          "type": "text",
+          "label": ""
+      },
+      "expressionProperties": {
+          "templateOptions.label": "\"COMMON/custom-excludes/lbl\" | translate",
+          "templateOptions.placeholder": "\"SERIESETTINGSCTRLjs/custom-excludes/placeholder\" | translate"
+      }
+    }]
+}, {
+    "className": "row",
+    "fieldGroup": [{
+      "key": "ignoreGlobalQuality",
+      "className": "inline-checkbox-small col-xs-6",
+      "type": "input",
+      "templateOptions": {
+          "type": "checkbox",
+          "label": ""
+      },
+      "expressionProperties": {
+          "templateOptions.label": "\"COMMON/ignore-global-quality/lbl\" | translate"
+      }
+    }, {
+        "key": "customSeeders",
+        "className": "col-xs-6",
+        "type": "integer",
+        "templateOptions": {
+            "min": "1"
+        },
+        "validation": {
+            "messages": {
+                "min": "\"SERIESETTINGSCTRLjs/custom-seeders-min/alert\" | translate",
+                "pattern": "\"SERIESETTINGSCTRLjs/custom-seeders/placeholder\" | translate"
+            }
+        },
+        "expressionProperties": {
+            "templateOptions.label": "\"COMMON/custom-seeders/lbl\" | translate",
+            "templateOptions.placeholder": "\"SERIESETTINGSCTRLjs/custom-seeders/placeholder\" | translate"
+        }
+    }]
 }, {
     "className": "row",
     "fieldGroup": [{
@@ -163,7 +210,7 @@
     "type": "input",
     "hideExpression": "!model.isDownloadPathSupportedRemote || model.isDownloadPathSupportedLocal",
     "templateOptions": {
-        "type": "text", 
+        "type": "text",
         "label": ""
     },
     "expressionProperties": {
@@ -201,7 +248,7 @@
     "type": "input",
     "hideExpression": "model.isDownloadPathSupportedRemote || model.isDownloadPathSupportedLocal",
     "templateOptions": {
-        "type": "text", 
+        "type": "text",
         "label": ""
     },
     "expressionProperties": {
