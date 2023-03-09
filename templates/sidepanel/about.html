@@ -33,7 +33,7 @@
           <li><a href='https://angular-translate.github.io' target='_blank'>Angular-translate.js</a><span translate-once>ABOUT/credits/li7</span></li>
           <li><a href='http://angular-formly.com' target='_blank'>Angular-formly.js</a><span translate-once>ABOUT/credits/li8</span></li>
           <li><a href='https://nwjs.io' target='_blank'>NW.js</a><span translate-once>ABOUT/credits/li9</span></li>
-          <li><a href='http://thexem.de' target='_blank'>theXEM.de</a><span translate-once>ABOUT/credits/li10</span></li>
+          <li><a href='https://thexem.info' target='_blank'>theXEM.info</a><span translate-once>ABOUT/credits/li10</span></li>
           <li><a href='https://github.com/ngosang/trackerslist' target='_blank'>ngosang/trackerslist</a><span translate-once>ABOUT/credits/li11</span></li>
           <li><a href='https://github.com/Jackett/Jackett' target='_blank'>Jackett/Jackett</a><span translate-once>ABOUT/credits/li12</span></li>
         </ul>
@@ -53,8 +53,15 @@
           </tr>
           <tr ng-repeat="stats in statistics">
             <td style='width:160px; white-space:nowrap;'>{{::stats.name}}</td>
-            <td ng-if="stats.data.length && stats.data.length > 200"><pre style="max-width:480px; border:0; padding:0;background-color:transparent;color:white;">{{::stats.data}}</pre></td>
-            <td ng-if="!stats.data.length || stats.data.length <= 200">{{::stats.data}}</td>
+            <td>
+              <span ng-if="!stats.data.length || stats.data.length <= 200">{{stats.data}}</span>
+              <pre ng-if="stats.data.length && stats.data.length > 200" style="max-width:480px; border:0; padding:0;background-color:transparent;color:white;">{{stats.data}}</pre>
+              <span ng-if="stats.allowDelete" class="btn btn-danger btn-sm" ng-click="clearStatData(stats)">
+                <span ng-show="!stats.clicked" translate-once>COMMON/clear/btn</span>
+                <span ng-show="stats.clicked" translate-once>COMMON/are-you-sure/lbl</span>
+                <span class="glyphicon glyphicon-trash"></span>
+              </span>
+            </td>
           </tr>
         </table>
       </td>
