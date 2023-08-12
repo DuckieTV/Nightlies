@@ -30,6 +30,15 @@ localStorage.setItem('debugTraktTVv2', 'true')
 ```javascript
 localStorage.removeItem('debugTraktTVv2')
 ```
+##view details of an element
+```
+CRUD.executeQuery('select TRAKT_ID from Episodes where ID_Episode = 36584').then(function(element) { console.log(element.rows[0]); })
+```
+
+##delete a single episode
+```
+CRUD.executeQuery('delete from Episodes where ID_Episode = 36584').then(function(element) { if (element.rowsAffected == 0) console.log('not found'); else console.log('deleted')})
+```
 
 ##Reset all watchedAt values
 ```javascript
