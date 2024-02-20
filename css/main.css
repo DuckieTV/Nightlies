@@ -455,7 +455,7 @@ background-rotator .placeholder {
   text-align: left;
   line-height: 37px;
   vertical-align: super;
-  padding-left: 25px;
+  padding-left: 15px;
 }
 
 .settings .buttons .btn.choose-client:hover {
@@ -564,7 +564,7 @@ input[type=text], input[type=url], input[type=password], input[type=number], opt
   border-radius: 5px;
   font-family: helvetica, sans-serif;
   text-shadow: 2px 2px 2px black;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.35s ease-in-out;
   padding-left: 5px;
 }
 
@@ -602,10 +602,9 @@ option {
 }
 
 .form-control:focus {
-  border-color: #222;
+  border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(2, 2, 2, .6);
-  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px rgba(102, 175, 233,.6);
 }
 
 input[type=checkbox], input[type=radio] {
@@ -1153,8 +1152,53 @@ series-list .trakt-import serieheader h3, series-list .backup-import serieheader
   padding: 0 5px;
 }
 
+.torrentBtns .tb-activeIcon {
+  margin-right: 3px;
+}
+
+.torrentBtns .tb-jackettIcon {
+  margin-left: 2px;
+}
+
 .torrentBtns .sort-btn {
   border-color: rgba(255, 255, 255, 0.4);
+}
+
+.torrentBtns button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.torrentBtns loading-spinner {
+  margin: 0 0 0 3px;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.torrentDialog_topNav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 3px;
+}
+
+.torrentDialog_qualityBtns {
+  flex-shrink: 0;
+}
+
+.torrentDialog_searchBar {
+  width: 54%;
+  width: -webkit-fill-available;
+}
+
+.torrentDialog_searchBar .input-group-btn button {
+  background-color: rgba(55, 55, 55, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.torrentDialog_searchBar .input-group-btn button:hover {
+  background-color: rgba(60, 60, 60, 0.6);
 }
 
 .torrent-dialog, .subtitle-dialog {
@@ -2125,7 +2169,7 @@ sidepanel h2 {
   color: #fff;
   margin-top: 13px;
   margin-bottom: 0;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 sidepanel .buttons {
@@ -2149,7 +2193,7 @@ sidepanel .buttons strong {
 
 sidepanel .buttons a {
   display: block;
-  padding: 12px;
+  padding: 11px 12px;
   margin: 5px 15px;
   border: 1px solid #fff;
   border-radius: 9px;
@@ -2207,6 +2251,10 @@ sidepanel .buttons a.btn-danger:hover {
 sidepanel .buttons a.no-hover {
   background-color: initial;
   cursor: initial;
+  text-decoration: none;
+}
+
+sidepanel .buttons a.no-hover:hover, sidepanel .buttons a.no-hover:hover span {
   text-decoration: none;
 }
 
@@ -2323,7 +2371,6 @@ sidepanel .buttons .two-face-torrent .download {
 }
 
 sidepanel .buttons .two-face-torrent .auto-download {
-  padding: 12px 10px;
   margin: 0px;
   border-left: 0px;
   border-bottom-left-radius: 0;
@@ -2332,7 +2379,8 @@ sidepanel .buttons .two-face-torrent .auto-download {
 }
 
 sidepanel .buttons .two-face-torrent .torrent-settings {
-  padding: 15px 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0;
 }
 
@@ -2349,7 +2397,8 @@ sidepanel .buttons .torrent-mini-remote-control>span {
 
 sidepanel .buttons .torrent-mini-remote-control a {
   margin: 0 1px;
-  padding: 5px;
+  padding: 4px 6px;
+  border-radius: 6px;
 }
 
 sidepanel .buttons .torrent-mini-remote-control a i.glyphicon {
@@ -2380,7 +2429,7 @@ sidepanel .serie-overview .mark-button .left-glyph i {
 
 sidepanel .serie-overview .mark-button .right-text-glyph {
   width: 100%;
-  text-align: center
+  text-align: center;
 }
 
 sidepanel .serie-overview .mark-button .right-text-glyph span {
@@ -2392,6 +2441,7 @@ sidepanel .serie-overview .mark-button .right-text-glyph i {
   font-size: 14px;
   color: white !important;
   left: -1px;
+  margin-left: 2px;
 }
 
 sidepanel h1 {
@@ -2681,8 +2731,8 @@ sidepanel .seasons serieheader {
 }
 
 .setting-divider {
-  margin-top: 22.5px;
-  margin-bottom: 22.5px;
+  margin-top: 18px;
+  margin-bottom: 18px;
 }
 
 .settings .label {
@@ -2745,10 +2795,10 @@ sidepanel .seasons serieheader {
 }
 
 .smallsettingicon {
-  width: 34px;
-  height: 34px;
-  margin-left: -5px;
-  margin-top: -5px;
+  width: 30px;
+  height: 30px;
+  margin-left: -4px;
+  margin-top: -4px;
   float: left;
 }
 
