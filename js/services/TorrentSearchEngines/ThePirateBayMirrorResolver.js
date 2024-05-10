@@ -8,7 +8,7 @@ DuckieTV.factory('ThePirateBayMirrorResolver', ['$q', '$http', '$injector',
     var maxAttempts = 3
 
     var endpoints = {
-      thepiratebay: 'https://proxybay.unblockit.casa/'
+      thepiratebay: 'https://proxybay.unblockit.sbs/'
     }
 
     /**
@@ -19,7 +19,7 @@ DuckieTV.factory('ThePirateBayMirrorResolver', ['$q', '$http', '$injector',
     }
 
     /**
-     * Find a random mirror from proxybay.app
+     * Find a random mirror from proxybay
      */
     function parsePirateBayProxyList(result) {
       var parser = new DOMParser()
