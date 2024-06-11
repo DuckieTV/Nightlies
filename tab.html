@@ -24,7 +24,7 @@
     <button class="glyphicon glyphicon-win-close" id='close' uib-tooltip="{{ 'COMMON/close/btn'|translate }}" tooltip-placement="bottom"></button>
   </div>
 
-  <background-rotator channel="'background:load'" style="opacity:{{getSetting('background-rotator.opacity')}}"></background-rotator>
+  <background-rotator channel="'background:load'"></background-rotator>
   <chrome-top-sites ng-if="getSetting('topSites.enabled')" class="{{getSetting('topSites.mode')}}"></chrome-top-sites>
 
   <div class="container" ng-class="{'topsites': getSetting('topSites.enabled')}">
