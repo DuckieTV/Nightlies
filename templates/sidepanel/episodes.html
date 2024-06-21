@@ -68,7 +68,9 @@
               </a>
             </td>
             <td ng-if="!sidepanel.serie.TVDB_ID" style="width:100%;padding-left:20px">
-                <a class="download btn btn-danger" href='https://github.com/SchizoDuckie/DuckieTV/wiki/FAQ#why-is-the-episode-find-a-torrent-button-not-working' target='_blank'><i class="glyphicon glyphicon-ban-circle"></i><strong style="display:flex">&nbsp;<del>&nbsp;TMDB_ID&nbsp;</del></strong></a>
+                <a class="download btn btn-danger" href='https://github.com/SchizoDuckie/DuckieTV/wiki/FAQ#why-is-the-episode-find-a-torrent-button-not-working' target='_blank'>
+                  <i class="glyphicon glyphicon-ban-circle"></i><strong style="display:flex">&nbsp;<del>&nbsp;TVDB_ID&nbsp;</del>&nbsp;<i class="glyphicon glyphicon-info-sign"></i></strong>
+                </a>
             </td>
             <td ng-if="sidepanel.serie.TVDB_ID" style="padding-right:20px">
               <torrent-dialog class="auto-download" q='season.getSeasonSearchString(sidepanel.serie,season.season)'>
