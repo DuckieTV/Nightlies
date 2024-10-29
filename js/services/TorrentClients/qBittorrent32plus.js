@@ -211,8 +211,12 @@ DuckieTorrent.factory('qBittorrent32plusAPI', ['qBittorrentAPI', '$http', '$q',
         var self = this
         var hashkey = 'hash='
         if (self.config.apiVersion == 2) {
-          method = method + 'v2'
           hashkey = 'hashes='
+        }
+        if ((self.config.apiVersion == 2) && (self.config.apiSubVersion > 10))  {
+          method = method + 'v211'
+        } else {
+          method = method + 'v2'
         }
         var headers = {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -254,8 +258,10 @@ DuckieTorrent.factory('qBittorrent32plusAPI', ['qBittorrentAPI', '$http', '$q',
         addfilev2: '/api/v2/torrents/add',
         resume: '/command/resume',
         resumev2: '/api/v2/torrents/resume',
+        resumev211: '/api/v2/torrents/start',
         pause: '/command/pause',
         pausev2: '/api/v2/torrents/pause',
+        pausev211: '/api/v2/torrents/stop',
         remove: '/command/delete',
         removev2: '/api/v2/torrents/delete',
         files: '/query/propertiesFiles/%s',
