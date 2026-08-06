@@ -1,9 +1,9 @@
 /**
- * qBittorrent41plus >= 4.1 client
+ * qBittorrent52plus >= 5.2 client
  *
  * API Docs:
- * https://github.com/qbittorrent/qBittorrent/wiki/Web-API-Documentation v4.1+ APIv2 (appear to have been deleted)
- * https://github.com/qbittorrent/qBittorrent/wiki/WebUI-API-(qBittorrent-5.0) v5.0+ APIv2
+ * https://github.com/qbittorrent/qBittorrent/wiki/Web-API-Documentation v5.2+ APIv2 (To be provided?)
+ * https://github.com/qbittorrent/qBittorrent/wiki/API-Key-Authentication-(%E2%89%A5v5.2.0)
  *
  */
 var qBittorrentData = function(data) {
@@ -62,32 +62,30 @@ DuckieTorrent.factory('qBittorrentRemote', ['BaseTorrentRemote',
   }
 ])
 
-DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
+DuckieTorrent.factory('qBittorrent52plusAPI', ['BaseHTTPApi', '$http', '$q',
   function(BaseHTTPApi, $http, $q) {
-    var qBittorrent41plusAPI = function() {
+    var qBittorrent52plusAPI = function() {
       BaseHTTPApi.call(this)
       this.config.apiVersion = 2
       this.config.apiSubVersion = 0
     }
-    qBittorrent41plusAPI.extends(BaseHTTPApi, {
+    qBittorrent52plusAPI.extends(BaseHTTPApi, {
       login: function() {
         var self = this
-        return $http.post(this.getUrl('login'), 'username=' + encodeURIComponent(this.config.username) + '&password=' + encodeURIComponent(this.config.password), {
+        return $http.post(this.getUrl('version'), null, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-Forwarded-Host': window.location.origin
+            'X-Forwarded-Host': window.location.origin,
+            'Authorization': 'Bearer ' + this.config.apikey
           }
         }).then(function(result) {
-          // qBittorrent < 5.0 returns 'Ok.' in the body; 5.0+ returns HTTP 204 with no body
-          if (result.data == 'Ok.' || result.status === 204) {
-            if (window.debugTSE) console.debug('qBittorrent41plusAPI.login', result.data)
-            return self.request('version').then(function(result) {
-              var subs = result.data.split('.')
-              self.config.apiSubVersion = subs[1]
-              return true
-            })
+          if (result.data.startsWith('2.')) {
+            if (window.debugTSE) console.debug('qBittorrent52plusAPI.login', result.data)
+            var subs = result.data.split('.')
+            self.config.apiSubVersion = subs[1]
+            return true
           } else {
-            if (window.debugTSE) console.debug('qBittorrent41plusAPI.login', result.data)
+            if (window.debugTSE) console.debug('qBittorrent52plusAPI.login', result.data)
             throw 'Login failed!'
           }
         })
@@ -112,19 +110,21 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
         }
         var headers = {
           'Content-Type': undefined,
-          'X-Forwarded-Host': window.location.origin
+          'X-Forwarded-Host': window.location.origin,
+          'Authorization': 'Bearer ' + this.config.apikey
         }
         return $http.post(this.getUrl('addmagnet'), fd, {
           headers: headers
         }).then(function(result) {
-          if (window.debugTSE) console.debug('qBittorrent41plusAPI.addmagnet', result.data)
+          if (window.debugTSE) console.debug('qBittorrent52plusAPI.addmagnet', result.data)
         })
       },
       addTorrentByUpload: function(data, infoHash, releaseName, dlPath, label) {
         var self = this
         var headers = {
           'Content-Type': undefined,
-          'X-Forwarded-Host': window.location.origin
+          'X-Forwarded-Host': window.location.origin,
+          'Authorization': 'Bearer ' + this.config.apikey
         }
         var fd = new FormData()
         fd.append('torrents', data, releaseName + '.torrent')
@@ -140,7 +140,7 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
           transformRequest: angular.identity,
           headers: headers
         }).then(function(result) {
-          if (window.debugTSE) console.debug('qBittorrent41plusAPI.addTorrentByUpload', result.data)
+          if (window.debugTSE) console.debug('qBittorrent52plusAPI.addTorrentByUpload', result.data)
           var currentTry = 0
           var maxTries = 5
           // wait for qBittorrent to add the torrent to the list. we poll 5 times until we find it, otherwise abort.
@@ -221,24 +221,38 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
         fd.append('deleteFiles', false)
         var headers = {
           'Content-Type': undefined,
-          'X-Forwarded-Host': window.location.origin
+          'X-Forwarded-Host': window.location.origin,
+          'Authorization': 'Bearer ' + this.config.apikey
         }
         return $http.post(this.getUrl('remove'), fd, {
           headers: headers
         }).then(function(result) {
-          if (window.debugTSE) console.debug('qBittorrent41plusAPI.remove', result.data)
+          if (window.debugTSE) console.debug('qBittorrent52plusAPI.remove', result.data)
         })
       },
       getTorrents: function() {
         var self = this
-        return this.request('torrents').then(function(data) {
+        var headers = {
+          'Authorization': 'Bearer ' + this.config.apikey
+        }
+        return $http.get(this.getUrl('torrents'), {
+          headers: headers
+        }).then(function(data) {
           return data.data
         })
       },
       getFiles: function(hash) {
+        if (hash == null) return
         var self = this
-        return this.request('files', hash).then(function(data) {
-          return self.request('general', hash).then(function(general) {
+        var headers = {
+          'Authorization': 'Bearer ' + this.config.apikey
+        }
+        return $http.get(this.getUrl('files', hash), {
+          headers: headers
+        }).then(function(data) {
+          return $http.get(self.getUrl('general', hash), {
+          headers: headers
+        }).then(function(general) {
             data.data.downloaddir = (general.data.save_path) ? general.data.save_path.slice(0, -1) : undefined
             return data.data
           })
@@ -252,34 +266,33 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
         }
         var headers = {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'X-Forwarded-Host': window.location.origin
+          'X-Forwarded-Host': window.location.origin,
+          'Authorization': 'Bearer ' + this.config.apikey
         }
         return $http.post(this.getUrl(method), hashkey + id, {
           headers: headers
         })
       }
     })
-    return qBittorrent41plusAPI
+    return qBittorrent52plusAPI
   }
 ])
 
-  .factory('qBittorrent41plus', ['BaseTorrentClient', 'qBittorrentRemote', 'qBittorrent41plusAPI',
-    function(BaseTorrentClient, qBittorrentRemote, qBittorrent41plusAPI) {
-      var qBittorrent41plus = function() {
+  .factory('qBittorrent52plus', ['BaseTorrentClient', 'qBittorrentRemote', 'qBittorrent52plusAPI',
+    function(BaseTorrentClient, qBittorrentRemote, qBittorrent52plusAPI) {
+      var qBittorrent52plus = function() {
         BaseTorrentClient.call(this)
       }
-      qBittorrent41plus.extends(BaseTorrentClient, {})
+      qBittorrent52plus.extends(BaseTorrentClient, {})
 
-      var service = new qBittorrent41plus()
-      service.setName('qBittorrent 4.1+')
-      service.setAPI(new qBittorrent41plusAPI())
+      var service = new qBittorrent52plus()
+      service.setName('qBittorrent 5.2+')
+      service.setAPI(new qBittorrent52plusAPI())
       service.setRemote(new qBittorrentRemote())
       service.setConfigMappings({
-        server: 'qbittorrent32plus.server',
-        port: 'qbittorrent32plus.port',
-        username: 'qbittorrent32plus.username',
-        password: 'qbittorrent32plus.password',
-        use_auth: 'qbittorrent32plus.use_auth'
+        server: 'qbittorrent52plus.server',
+        port: 'qbittorrent52plus.port',
+        apikey: 'qbittorrent52plus.apikey'
       })
       service.setEndpoints({
         torrents: '/api/v2/torrents/info',
@@ -292,8 +305,7 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
         remove: '/api/v2/torrents/delete',
         files: '/api/v2/torrents/files?hash=%s',
         general: '/api/v2/torrents/properties?hash=%s',
-        version: '/api/v2/app/webapiVersion',
-        login: '/api/v2/auth/login'
+        version: '/api/v2/app/webapiVersion'
       })
       service.readConfig()
 
@@ -301,10 +313,10 @@ DuckieTorrent.factory('qBittorrent41plusAPI', ['BaseHTTPApi', '$http', '$q',
     }
   ])
 
-  .run(['DuckieTorrent', 'qBittorrent41plus', 'SettingsService',
-    function(DuckieTorrent, qBittorrent41plus, SettingsService) {
+  .run(['DuckieTorrent', 'qBittorrent52plus', 'SettingsService',
+    function(DuckieTorrent, qBittorrent52plus, SettingsService) {
       if (SettingsService.get('torrenting.enabled')) {
-        DuckieTorrent.register('qBittorrent 4.1+', qBittorrent41plus)
+        DuckieTorrent.register('qBittorrent 5.2+', qBittorrent52plus)
       }
     }
   ])
