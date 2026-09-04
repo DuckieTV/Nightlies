@@ -3,7 +3,7 @@
  */
 DuckieTV.provider('TorrentFreak', function() {
   var endpoints = {
-    archive: 'https://torrentfreak.com/most-pirated-movies-of-%s/' // may need maintenance?
+    archive: 'https://torrentfreak.com/most-pirated-movies-of-%s-weekly-archive/' // may need maintenance?
   }
 
   /**
@@ -19,13 +19,21 @@ DuckieTV.provider('TorrentFreak', function() {
   function parseTables(result) {
     var parser = new DOMParser()
     var doc = parser.parseFromString(result.data, 'text/html')
-    var tables = doc.querySelectorAll('table.css.hover');
-    var titles = doc.querySelectorAll('h2');
+    var doc_tables = doc.querySelectorAll('table.css.hover');
+    var doc_titles = doc.querySelectorAll('h2');
+
+    // patch for missing july 20 title
+    var titles = []
+    for(var i=0; i<doc_titles.length; i++) {
+      titles[i] = doc_titles[i].textContent
+    }
+    titles.splice(28, 0, 'The most torrented movies for the week ending on July 20 are:')
+
     var output = [];
-    for(var i=0; i<tables.length; i++) {
-      var rows = tables[i].querySelectorAll('tbody tr'),
-      out = {
-        title: titles[i].textContent,
+    for(var i=0; i<doc_tables.length; i++) {
+      var rows = doc_tables[i].querySelectorAll('tr:has(a[href])')
+      var out = {
+        title: titles[i],
         top10: []
       };
 

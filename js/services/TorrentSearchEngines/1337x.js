@@ -6,7 +6,7 @@ DuckieTV.run(['TorrentSearchEngines', 'SettingsService', '$q', '$http', '$inject
         mirrorResolver: null,
         includeBaseURL: true,
         endpoints: {
-          search: '/sort-search/%s/%o/1/'
+          search: '/sort-search/%s/1/'
         },
         selectors: {
           resultContainer: 'tr',
@@ -24,13 +24,7 @@ DuckieTV.run(['TorrentSearchEngines', 'SettingsService', '$q', '$http', '$inject
         detailsSelectors: {
           detailsContainer: 'div.no-top-radius',
           magnetUrl: ['ul li a[href^="magnet:?"]', 'href'],
-          torrentUrl: ['ul li a[href^="http://itorrents.org/"]', 'href']
-        },
-        orderby: {
-          age: {d: 'time/desc', a: 'time/asc'},
-          seeders: {d: 'seeders/desc', a: 'seeders/asc'},
-          leechers: {d: 'leechers/desc', a: 'leechers/asc'},
-          size: {d: 'size/desc', a: 'size/asc'}
+          torrentUrl: ['ul li a[href^="https://itorrents.net/"]', 'href']
         }
       }, $q, $http, $injector))
     }
